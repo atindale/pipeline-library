@@ -1,8 +1,12 @@
-def sendTelegram(message) {
+#!/usr/bin/env groovy
+
+def call(String message = 'This is a message') {
+
+// def sendTelegram(message) {
     def encodedMessage = URLEncoder.encode(message, "UTF-8")
 
     withCredentials([string(credentialsId: 'telegramToken', variable: 'TOKEN'),
-    string(credentialsId: 'telegramChatId', variable: 'CHAT_ID')]) {
+                     string(credentialsId: 'telegramChatId', variable: 'CHAT_ID')]) {
 
         response = httpRequest (consoleLogResponseBody: true,
                 contentType: 'APPLICATION_JSON',
